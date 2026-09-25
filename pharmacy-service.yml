@@ -1,0 +1,58 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5440/pharmacy_db
+    username: postgres
+    password: 123456
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+app:
+  branch-name: Nha Thuoc So 1
+  hotline: 1900xxxx
+
+pharmacy:
+  vat-rate: 0.10
+
+warehouse:
+  url: http://localhost:8082
+
+insurance:
+  url: http://localhost:8083
+
+resilience4j:
+
+  circuitbreaker:
+    instances:
+      warehouseCB:
+        failure-rate-threshold: 50
+        minimum-number-of-calls: 5
+        wait-duration-in-open-state: 20s
+
+      insuranceCB:
+        failure-rate-threshold: 60
+        minimum-number-of-calls: 5
+
+  retry:
+    instances:
+      invoiceRetry:
+        max-attempts: 3
+        wait-duration: 2s
+
+      insuranceRetry:
+        max-attempts: 3
+        wait-duration: 2s
+
+  ratelimiter:
+    instances:
+      invoiceLimit:
+        limit-for-period: 5
+        limit-refresh-period: 10s
+        timeout-duration: 0
+
+  timelimiter:
+    instances:
+      insuranceTimeout:
+        timeout-duration: 3s
