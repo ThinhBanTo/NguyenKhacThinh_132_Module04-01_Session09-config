@@ -14,7 +14,7 @@ app:
   hotline: 1900xxxx
 
 pharmacy:
-  vat-rate: 0.10
+  vat-rate: 0.20
 
 warehouse:
   url: http://localhost:8082
