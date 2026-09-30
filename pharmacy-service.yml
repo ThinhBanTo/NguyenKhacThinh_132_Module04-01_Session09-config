@@ -14,7 +14,13 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
+      acks: all
+      retries: 5
+  consumer:
+      group-id: pharmacy-expiry-group
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 app:
   branch-name: Nha Thuoc So 1
   hotline: 1900xxxx
