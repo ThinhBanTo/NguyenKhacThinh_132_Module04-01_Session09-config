@@ -56,3 +56,12 @@ resilience4j:
     instances:
       insuranceTimeout:
         timeout-duration: 1s
+ kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+app:
+  kafka:
+    stock-topic: medicine-stock-events
