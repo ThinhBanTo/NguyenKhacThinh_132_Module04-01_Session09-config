@@ -9,21 +9,29 @@ spring:
       ddl-auto: update
     show-sql: true
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
 app:
   branch-name: Nha Thuoc So 1
   hotline: 1900xxxx
+
+  kafka:
+    stock-topic: medicine-stock-events
 
 pharmacy:
   vat-rate: 0.20
 
 warehouse:
-  url: http://localhost:8082
+  url: localhost:8082
 
 insurance:
-  url: http://localhost:8083
+  url: localhost:8083
 
 resilience4j:
-
   circuitbreaker:
     instances:
       warehouseCB:
@@ -56,12 +64,3 @@ resilience4j:
     instances:
       insuranceTimeout:
         timeout-duration: 1s
- kafka:
-    bootstrap-servers: localhost:9092
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-app:
-  kafka:
-    stock-topic: medicine-stock-events
